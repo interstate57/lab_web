@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 print("Hello world")
 
 from flask import Flask
@@ -39,15 +41,16 @@ bootstrap = Bootstrap(app)
 
 class NetForm(FlaskForm):
 
-openid = StringField('openid', validators = [DataRequired()])
+    openid = StringField('openid', validators = [DataRequired()])
 
-upload = FileField('Load image', validators=[
-FileRequired(),
-FileAllowed(['jpg', 'png', 'jpeg'], 'Images only!')])
+    upload = FileField('Load image', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png', 'jpeg'], 'Images only!')
+    ])
 
-recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
 
-submit = SubmitField('send')
+    submit = SubmitField('send')
 
 from werkzeug.utils import secure_filename
 import os
