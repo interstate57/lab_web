@@ -54,7 +54,7 @@ class NetForm(FlaskForm):
 from werkzeug.utils import secure_filename
 import os
 
-import net as neuronet
+#import net as neuronet
 
 @app.route("/net",methods=['GET', 'POST'])
 def net():
@@ -64,11 +64,13 @@ def net():
 
     if form.validate_on_submit():
         filename = os.path.join('./static', secure_filename(form.upload.data.filename))
-        fcount, fimage = neuronet.read_image_files(10,'./static')
+        #fcount, fimage = neuronet.read_image_files(10,'./static')
 
+    """
     decode = neuronet.getresult(fimage)
     for elem in decode:
         neurodic[elem[0][1]] = elem[0][2]
+    """
 
     form.upload.data.save(filename)
 
@@ -101,11 +103,13 @@ def apinet():
         cfile = base64.b64decode(filebytes)
         # чтобы считать изображение как файл из памяти, используем BytesIO
         img = Image.open(BytesIO(cfile))
+        """
         decode = neuronet.getresult([img])
         neurodic = {}
         for elem in decode:
             neurodic[elem[0][1]] = str(elem[0][2])
             print(elem)
+        """
 
         # пример сохранения переданного файла
         # handle = open('./static/f.png','wb')
