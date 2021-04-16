@@ -11,6 +11,8 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
+app = Flask(__name__)
+
 SECRET_KEY = 'secret'
 app.config['SECRET_KEY'] = SECRET_KEY
 
@@ -18,9 +20,6 @@ app.config['RECAPTCHA_USE_SSL'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6LdPt6waAAAAAKN6xpzXjdD_6F5gLqTRvjmy8KaC'
 app.config['RECAPTCHA_PRIVATE_KEY'] = '6LdPt6waAAAAAIPZyDHC53eyNX4ecMDTsbVcWog4'
 app.config['RECAPTCHA_OPTIONS'] = {'theme': 'white'}
-
-
-app = Flask(__name__)
 
 @app.route("/")
 def hello():
@@ -107,7 +106,7 @@ def apinet():
         for elem in decode:
             neurodic[elem[0][1]] = str(elem[0][2])
             print(elem)
-        
+
         # пример сохранения переданного файла
         # handle = open('./static/f.png','wb')
         # handle.write(cfile)
